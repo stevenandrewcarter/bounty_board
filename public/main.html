@@ -1,0 +1,15 @@
+<div class="clearfix">
+    <form ng-Submit="post()" ng-show="authenticated">
+        <h4>{{current_user}} says</h4>
+        <textarea required class="form-control" maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
+        <input class="btn submit-btn pull-right" type="submit" value="Chirp!" />
+    </form>
+</div>
+<div id="post-stream">
+    <h4>Bounties</h4>
+    <div class="post" ng-repeat="bounty in bounties | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">
+        <p>{{bounty.text}}</p>
+        <small>Posted by @{{bounty.created_by}}</small>
+        <small class="pull-right">{{bounty.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+    </div>
+</div>

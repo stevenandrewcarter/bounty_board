@@ -1,0 +1,25 @@
+include mixins
+
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body(ng-app='bounty-app')
+    +nav(title, "default")
+      +nav_item( "index.html", "active" ) Home
+      +nav_item( "about.html" ) About
+      +nav_item( "contact.html" ) Contact
+      li(class="navbar-right", ng-hide="authenticated"): a( href="#/login" ) Login
+      li(class="navbar-right", ng-show="authenticated", ng-click="signout()"): a( href="Logout" ) Logout
+    div(class='col-md-offset-1 col-md-10')
+      div(ng-view)
+        block content
+
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+  script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.js')
+  script(src='javascripts/bounty-app.js')
