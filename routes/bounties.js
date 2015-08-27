@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Bounty = mongoose.model('Bounty');
+var User = mongoose.model('User');
+
 //Used for routes that must be authenticated.
 function isAuthenticated(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
@@ -16,33 +18,46 @@ function isAuthenticated(req, res, next) {
   }
   // if the user is not authenticated then redirect him to the login page
   return res.redirect('/#login');
-};
-
+}
 //Register the authentication middleware
 router.use('/bounties', isAuthenticated);
 
 router.route('/bounties')
 //creates a new bounty
     .post(function (req, res) {
+      console.log("Bounty POST: " + JSON.stringify(req.body));
       var bounty = new Bounty();
       bounty.text = req.body.text;
       bounty.title = req.body.title;
-      bounty.created_by = req.body.created_by;
-      bounty.save(function (err, post) {
+      bounty.tags = req.body.tags;
+      User.findOne({'username': req.body.created_by}, function (err, user) {
+        console.log("Bounty POST: " + JSON.stringify(user));
         if (err) {
+          console.log("Bounty POST: " + err);
           return res.status(500).send(err);
         }
-        return res.json(post);
+        bounty.created_by = user._id;
+        console.log("Bounty POST: " + JSON.stringify(bounty));
+        bounty.save(function (err, post) {
+          if (err) {
+            console.log("Bounty POST: " + err);
+            return res.status(500).send(err);
+          }
+          return res.json(post);
+        });
       });
     })
 //gets all bounties
     .get(function (req, res) {
-      Bounty.find(function (err, bounties) {
-        if (err) {
-          return res.send(500, err);
-        }
-        return res.status(200).send(bounties);
-      });
+      Bounty.find()
+          .populate('created_by', 'username')
+          .exec(function (err, bounties) {
+            if (err) {
+              return res.send(500, err);
+            }
+            console.log("Bounty GET: " + JSON.stringify(bounties));
+            return res.status(200).send(bounties);
+          });
     });
 
 //post-specific commands. likely won't be used

@@ -1,4 +1,4 @@
-var app = angular.module('bounty-app', ['ngRoute', 'ngResource']).run(function ($rootScope) {
+var app = angular.module('bounty-app', ['ngRoute', 'ngResource']).run(function ($http, $rootScope) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
 
@@ -32,13 +32,14 @@ app.factory('bountyService', function ($resource) {
   return $resource('/api/bounties/:id');
 });
 
-app.controller('mainController', function (bountyService, $scope, $rootScope) {
+app.controller('mainController', function ($scope, $rootScope, bountyService) {
   $scope.bounties = bountyService.query();
   $scope.newBounty = {created_by: '', text: '', created_at: ''};
 
   $scope.bounty = function () {
     $scope.newBounty.created_by = $rootScope.current_user;
     $scope.newBounty.created_at = Date.now();
+    $scope.newBounty.tags = $scope.newBounty.tags.split(' ');
     bountyService.save($scope.newBounty, function () {
       $scope.bounties = bountyService.query();
       $scope.newBounty = {created_by: '', text: '', created_at: ''};

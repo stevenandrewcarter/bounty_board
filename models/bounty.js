@@ -6,7 +6,7 @@ var bountySchema = new mongoose.Schema({
   created_at: {type: Date, default: Date.now},
   title: {type: String, required: true},
   text: {type: String, required: true},
-  category: {type: Schema.ObjectId, ref: 'Category', required: true},
+  tags: [{type: String}]
 });
 
 mongoose.model('Bounty', bountySchema);

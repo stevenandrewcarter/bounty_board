@@ -1,15 +1,42 @@
 <div class="clearfix">
-    <form ng-Submit="post()" ng-show="authenticated">
-        <h4>{{current_user}} says</h4>
-        <textarea required class="form-control" maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
-        <input class="btn submit-btn pull-right" type="submit" value="Chirp!" />
+    <!-- New Bounty Form -->
+    <form ng-Submit="bounty()" ng-show="authenticated">
+        <h4>Create a bounty for {{current_user}}</h4>
+
+        <div class="form-group">
+            <label for="bountyTitle">Title</label>
+            <input class="form-control" type="text" id="bountyTitle" ng-model="newBounty.title"
+                   placeholder="Bounty Title"/>
+        </div>
+        <div class="form-group">
+            <label for="bountyDescription">Description</label>
+            <textarea required class="form-control" maxlength="200" rows="3" placeholder="Description"
+                      ng-model="newBounty.text" id="bountyDescription"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="bountyTags">Tags</label>
+            <input class="form-control" placeholder="Enter tags" ng-model="newBounty.tags" id="bountyTags"/>
+        </div>
+        <input class="btn submit-btn pull-right" type="submit" value="Post"/>
     </form>
 </div>
 <div id="post-stream">
-    <h4>Bounties</h4>
-    <div class="post" ng-repeat="bounty in bounties | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">
-        <p>{{bounty.text}}</p>
-        <small>Posted by @{{bounty.created_by}}</small>
-        <small class="pull-right">{{bounty.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+    <!-- List Bounties -->
+    <h4>Bounties <span class="badge">{{bounties.length}}</span></h4>
+
+    <div id="bounties" ng-repeat="bounty in bounties | orderBy:'created_at':true">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{bounty.title}}</div>
+            <div class="panel-body">
+                <p>{{bounty.text}}</p>
+                <small>Posted by @{{bounty.created_by.username}}</small>
+                <small class="pull-right">{{bounty.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+                <div>
+                    <span ng-repeat="tag in bounty.tags">
+                        <span class="label label-default">{{tag}}</span>&nbsp;
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
