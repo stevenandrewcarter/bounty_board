@@ -1,0 +1,11 @@
+<div class="page-header">
+    <h2><small>Top Bounties</small></h2>
+</div>
+<div class="list-group">
+    <div *ngFor="#bounty of bounties" (click)="gotoDetail(bounty)">
+        <a class="list-group-item">
+            <h4 class="list-group-item-heading">{{bounty.name}}</h4>
+            <p class="list-group-item-text">{{bounty.description}}</p>
+        </a>
+    </div>
+</div>

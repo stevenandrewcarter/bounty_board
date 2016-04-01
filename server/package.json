@@ -1,0 +1,24 @@
+{
+  "name": "bounty_board_server",
+  "version": "1.0.0",
+  "description": "The Server API for the Bounty Board",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steven Carter",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.11.3",
+    "mongoose": "^4.1.3",
+    "morgan": "^1.7.0",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
+  }
+}
