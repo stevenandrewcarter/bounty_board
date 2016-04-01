@@ -47,3 +47,4 @@ node_modules
 typings
 /client/app/*.js
 /client/app/*.js.map
+*.log
