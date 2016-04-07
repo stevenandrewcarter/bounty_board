@@ -9,7 +9,7 @@ import { BountyService } from '../services/bounty.service';
     templateUrl: 'views/dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-    bounties: Bounty[] = [];    
+    bounties: Bounty[] = [];
     constructor(private _router: Router, private _bountyService: BountyService) {
     }
 

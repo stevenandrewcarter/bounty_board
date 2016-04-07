@@ -2,11 +2,9 @@
     <div class="page-header">
         <h2><small>{{bounty.name}} details!</small></h2>
     </div>
-    <div>
-        <label>id: </label>{{bounty.id}}</div>
-    <div>
-        <label>name: </label>
-        <input [(ngModel)]="bounty.name" placeholder="name" />
-    </div>
+    <div><label>id: </label>{{bounty.id}}</div>
+    <div><label>name: </label><input [(ngModel)]="bounty.name" placeholder="name" /></div>
+    <div><label>description: </label><input [(ngModel)]="bounty.description" /></div>
+    <div><label>status: </label><input type="checkbox" [(ngModel)]="bounty.status" /></div>
     <button (click)="goBack()">Back</button>
 </div>

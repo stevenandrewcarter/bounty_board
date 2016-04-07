@@ -1,13 +1,12 @@
-import { Component, OnInit } from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 
 import {Bounty} from '../models/bounty';
-import { BountyService } from '../services/bounty.service';
+import {BountyService} from '../services/bounty.service';
 
 @Component({
     selector: 'my-bounty-detail',
-    templateUrl: 'views/bounty-detail.component.html',
-    styleUrls: ['css/bounty-detail.component.css']
+    templateUrl: 'views/bounty-detail.component.html'
 })
 
 export class BountyDetailComponent implements OnInit {

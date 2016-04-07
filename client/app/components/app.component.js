@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, bounty_service_1, bounties_component_1, bounty_detail_component_1, dashboard_component_1;
+    var core_1, router_1, bounty_service_1, bounties_component_1, bounty_detail_component_1, dashboard_component_1, router_2;
     var AppComponent;
     return {
         setters:[
@@ -19,6 +19,7 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+                router_2 = router_1_1;
             },
             function (bounty_service_1_1) {
                 bounty_service_1 = bounty_service_1_1;
@@ -34,9 +35,14 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(_router) {
+                    this._router = _router;
                     this.title = 'Bounty Board';
                 }
+                AppComponent.prototype.gotoBounties = function (status) {
+                    var link = ['Bounties', { status: status }];
+                    this._router.navigate(link);
+                };
                 AppComponent = __decorate([
                     router_1.RouteConfig([
                         {
@@ -51,9 +57,9 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
                             useAsDefault: true
                         },
                         {
-                            path: '/bounties',
+                            path: '/bounties/:status',
                             name: 'Bounties',
-                            component: bounties_component_1.BountiesComponent
+                            component: bounties_component_1.BountiesComponent,
                         }
                     ]),
                     core_1.Component({
@@ -65,7 +71,7 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
                             bounty_service_1.BountyService
                         ]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_2.Router])
                 ], AppComponent);
                 return AppComponent;
             }());

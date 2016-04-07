@@ -40,8 +40,7 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
                 BountyDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'my-bounty-detail',
-                        templateUrl: 'views/bounty-detail.component.html',
-                        styleUrls: ['css/bounty-detail.component.css']
+                        templateUrl: 'views/bounty-detail.component.html'
                     }), 
                     __metadata('design:paramtypes', [bounty_service_1.BountyService, router_1.RouteParams])
                 ], BountyDetailComponent);

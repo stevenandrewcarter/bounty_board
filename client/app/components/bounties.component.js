@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './bounty-detail.component'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, bounty_detail_component_1, bounty_service_1;
+    var core_1, router_1, router_2, bounty_detail_component_1, bounty_service_1;
     var BountiesComponent;
     return {
         setters:[
@@ -19,6 +19,7 @@ System.register(['angular2/core', 'angular2/router', './bounty-detail.component'
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+                router_2 = router_1_1;
             },
             function (bounty_detail_component_1_1) {
                 bounty_detail_component_1 = bounty_detail_component_1_1;
@@ -28,9 +29,11 @@ System.register(['angular2/core', 'angular2/router', './bounty-detail.component'
             }],
         execute: function() {
             BountiesComponent = (function () {
-                function BountiesComponent(_bountyService, _router) {
+                function BountiesComponent(_bountyService, _router, _routeParams) {
                     this._bountyService = _bountyService;
                     this._router = _router;
+                    this._routeParams = _routeParams;
+                    this.status = false;
                 }
                 BountiesComponent.prototype.gotoDetail = function (bounty) {
                     var link = ['BountyDetail', { id: bounty.id }];
@@ -38,6 +41,8 @@ System.register(['angular2/core', 'angular2/router', './bounty-detail.component'
                 };
                 BountiesComponent.prototype.ngOnInit = function () {
                     var _this = this;
+                    var routeStatus = +this._routeParams.get('status');
+                    this.status = routeStatus == 1;
                     this._bountyService.getBounties().then(function (bounties) { return _this.bounties = bounties; });
                 };
                 BountiesComponent = __decorate([
@@ -46,7 +51,7 @@ System.register(['angular2/core', 'angular2/router', './bounty-detail.component'
                         templateUrl: 'views/bounties.component.html',
                         directives: [bounty_detail_component_1.BountyDetailComponent]
                     }), 
-                    __metadata('design:paramtypes', [bounty_service_1.BountyService, router_1.Router])
+                    __metadata('design:paramtypes', [bounty_service_1.BountyService, router_1.Router, router_2.RouteParams])
                 ], BountiesComponent);
                 return BountiesComponent;
             }());
