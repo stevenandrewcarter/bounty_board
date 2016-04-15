@@ -27,6 +27,9 @@ System.register(['../models/mock-bounties', 'angular2/core'], function(exports_1
                 BountyService.prototype.getBounties = function () {
                     return Promise.resolve(mock_bounties_1.BOUNTIES);
                 };
+                BountyService.prototype.getOpenBounties = function () {
+                    return Promise.resolve(mock_bounties_1.BOUNTIES).then(function (bounties) { return bounties.filter(function (bounty) { return bounty.status == true; }); });
+                };
                 BountyService.prototype.getBounty = function (id) {
                     return Promise.resolve(mock_bounties_1.BOUNTIES).then(function (bounties) { return bounties.filter(function (bounty) { return bounty.id === id; })[0]; });
                 };

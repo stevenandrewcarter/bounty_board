@@ -32,8 +32,8 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
                 }
                 DashboardComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this._bountyService.getBounties()
-                        .then(function (bounties) { return _this.bounties = bounties.slice(1, 5); });
+                    this._bountyService.getOpenBounties()
+                        .then(function (bounties) { return _this.bounties = bounties.sort((function (n1, n2) { return n2.minimumBid - n1.minimumBid; })).slice(0, 6); });
                 };
                 DashboardComponent.prototype.gotoDetail = function (bounty) {
                     var link = ['BountyDetail', { id: bounty.id }];

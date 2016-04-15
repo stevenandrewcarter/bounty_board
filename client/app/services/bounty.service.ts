@@ -7,6 +7,12 @@ export class BountyService {
         return Promise.resolve(BOUNTIES);
     }
     
+   getOpenBounties() {
+        return Promise.resolve(BOUNTIES).then(
+            bounties => bounties.filter(bounty => bounty.status == true)
+        );
+    }
+    
     getBounty(id: number) {
         return Promise.resolve(BOUNTIES).then(
             bounties => bounties.filter(bounty => bounty.id === id)[0]

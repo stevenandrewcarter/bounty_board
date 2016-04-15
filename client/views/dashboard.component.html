@@ -3,9 +3,21 @@
 </div>
 <div class="list-group">
     <div *ngFor="#bounty of bounties" (click)="gotoDetail(bounty)">
-        <a class="list-group-item">
+        <div class="col-sm-6 col-md-4">
             <h4 class="list-group-item-heading">{{bounty.name}}</h4>
-            <p class="list-group-item-text">{{bounty.description}}</p>
-        </a>
+            <div class="thumbnail">
+                <div class="caption">
+                    <p><b>Created:</b> {{bounty.dateCreated}}</p>
+                    <p><b>Expires:</b> {{bounty.dateExpires}}</p>
+                    <p><b>Minumum Bid:</b> {{bounty.minimumBid}}</p>
+                    <p>{{bounty.description}}</p>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-primary" role="button">Apply</a>
+                        <a href="#" class="btn btn-default" role="button">Watch</a>
+                        <a href="#" class="btn btn-danger" role="button">Ignore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

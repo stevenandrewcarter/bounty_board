@@ -14,8 +14,8 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._bountyService.getBounties()
-            .then(bounties => this.bounties = bounties.slice(1, 5));
+        this._bountyService.getOpenBounties()
+            .then(bounties => this.bounties = bounties.sort(((n1, n2) => n2.minimumBid - n1.minimumBid)).slice(0, 6));
     }
 
     gotoDetail(bounty: Bounty) {

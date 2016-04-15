@@ -1,10 +1,62 @@
 <div *ngIf="bounty">
-    <div class="page-header">
-        <h2><small>{{bounty.name}} details!</small></h2>
-    </div>
-    <div><label>id: </label>{{bounty.id}}</div>
-    <div><label>name: </label><input [(ngModel)]="bounty.name" placeholder="name" /></div>
-    <div><label>description: </label><input [(ngModel)]="bounty.description" /></div>
-    <div><label>status: </label><input type="checkbox" [(ngModel)]="bounty.status" /></div>
-    <button (click)="goBack()">Back</button>
+    <form class="form-horizontal">
+        <div class="page-header">
+            <h2><small>{{bounty.name}} details!</small></h2>
+        </div>
+        <div class="form-group">
+            <label for="bounty_id" class="col-sm-2 control-label">ID:</label>
+            <div class="col-sm-10"><input id="bounty_id" class="form-control" readonly [(ngModel)]="bounty.id"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="bounty_name" class="col-sm-2 control-label">Name: </label>
+            <div class="col-sm-10"><input id="bounty_name" class="form-control" [(ngModel)]="bounty.name" placeholder="name" /></div>
+        </div>
+
+        <div class="form-group">
+            <label for="bounty_description" class="col-sm-2 control-label">Description: </label>
+            <div class="col-sm-10"><textarea id="bounty_description" class="form-control" rows="6" [(ngModel)]="bounty.description"></textarea></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" [(ngModel)]="bounty.status">Open
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="bounty_date_created" class="col-sm-2 control-label">Date Created: </label>
+            <div class="col-sm-10"><input id="bounty_date_created" class="form-control" readonly [(ngModel)]="bounty.dateCreated" /></div>
+        </div>
+
+        <div class="form-group" *ngIf="bounty.status == false">
+            <label for="bounty_date_closed" class="col-sm-2 control-label">Date Closed: </label>
+            <div class="col-sm-10"><input id="bounty_date_closed" class="form-control" readonly [(ngModel)]="bounty.dateClosed" /></div>
+        </div>
+
+        <div class="form-group">
+            <label for="bounty_category" class="col-sm-2 control-label">Category: </label>
+            <div class="col-sm-10"><input id="bounty_category" class="form-control" [(ngModel)]="bounty.category" /></div>
+        </div>
+        
+        <div class="form-group">
+            <label for="bounty_priority" class="col-sm-2 control-label">Priority: </label>
+            <div class="col-sm-10"><input id="bounty_priority" class="form-control" [(ngModel)]="bounty.priority" /></div>
+        </div>
+        
+        <div class="form-group">
+            <label for="bounty_minimum_bid" class="col-sm-2 control-label">Minimum Bid: </label>
+            <div class="col-sm-10"><input id="bounty_minimum_bid" class="form-control" [(ngModel)]="bounty.minimumBid" /></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default" (click)="goBack()">Back</button>
+            </div>
+        </div>
+    </form>
 </div>
