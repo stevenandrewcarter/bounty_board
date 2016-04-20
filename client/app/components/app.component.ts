@@ -4,6 +4,7 @@ import {BountyService}     from '../services/bounty.service';
 import {BountiesComponent} from './bounties.component';
 import {BountyDetailComponent} from './bounty-detail.component';
 import {DashboardComponent} from './dashboard.component';
+import {LoginComponent} from './login.component';
 import {Router} from 'angular2/router';
 
 @RouteConfig([
@@ -22,6 +23,11 @@ import {Router} from 'angular2/router';
         path: '/bounties/:status',
         name: 'Bounties',
         component: BountiesComponent,
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: LoginComponent,
     }
 ])
 @Component({
@@ -35,7 +41,9 @@ import {Router} from 'angular2/router';
 })
 export class AppComponent {
     title = 'Bounty Board';
-    constructor(private _router: Router) { }
+    constructor(private _router: Router) {
+        
+     }
 
     gotoBounties(status: boolean) {
         let link = ['Bounties', { status: status }];

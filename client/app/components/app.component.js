@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../services/bounty.service', './bounties.component', './bounty-detail.component', './dashboard.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../services/bounty.service', './bounties.component', './bounty-detail.component', './dashboard.component', './login.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, bounty_service_1, bounties_component_1, bounty_detail_component_1, dashboard_component_1, router_2;
+    var core_1, router_1, bounty_service_1, bounties_component_1, bounty_detail_component_1, dashboard_component_1, login_component_1, router_2;
     var AppComponent;
     return {
         setters:[
@@ -32,6 +32,9 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
             },
             function (dashboard_component_1_1) {
                 dashboard_component_1 = dashboard_component_1_1;
+            },
+            function (login_component_1_1) {
+                login_component_1 = login_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -60,6 +63,11 @@ System.register(['angular2/core', 'angular2/router', '../services/bounty.service
                             path: '/bounties/:status',
                             name: 'Bounties',
                             component: bounties_component_1.BountiesComponent,
+                        },
+                        {
+                            path: '/login',
+                            name: 'Login',
+                            component: login_component_1.LoginComponent,
                         }
                     ]),
                     core_1.Component({
